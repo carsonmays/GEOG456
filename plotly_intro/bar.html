@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar</title>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+<body>
+
+    <div id= "myDiv"></div>
+    <script src= "./data/rainfall.json"></script>
+    <script>
+        var trace1 = {
+  x: Miami.Day,
+  y: Miami.PRCP,
+  mode: 'markers',
+  type: 'bar',
+  marker: {
+      color: Miami.PRCPColor
+  }
+};
+
+var data = [trace1];
+
+Plotly.newPlot('myDiv', data);
+    </script>
+    
+</body>
+</html>
