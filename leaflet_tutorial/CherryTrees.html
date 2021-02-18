@@ -1,0 +1,69 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cherry Trees</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+
+    <script src = "/Users/camays/Downloads/Spring 2021/GEOG 456/Week 4/leaflet_tutorial/data/flowering_cherries_4326.geojson"></script>
+    
+
+</head>
+<div id= ".redbox">
+    <h1>UNC Cherry Trees</h1>
+</div>
+<style>
+    .redbox {background-color: rgb(165, 42, 89); width: 1000px; height: 100; left: 17%; top: 15%; position: absolute; }
+
+    h1 {
+    position: relative;
+    text-align: center;
+    top: 20% }
+
+    body {background-color:  rgb(247, 181, 230);}
+    #mapid{ width: 900px; height: 500; left: 17%; top: 5%;}
+    
+    
+</style>
+<body>
+    <div id="mapid"></div>
+   
+    
+
+    <script>
+
+        var map = L.map('mapid').setView([35.91, -79.05], 16);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+        L.marker([35.911271, -79.049807]).addTo(map)
+            .bindPopup("CH 322")
+            .openPopup();
+
+
+        var TreeIcon = L.icon({
+            iconUrl: '/Users/camays/Downloads/Spring 2021/GEOG 456/Week 4/pngkin.com_tree-icon-png_945008.png',
+            iconSize: [30,30],
+            popupAnchor: [0,0]
+        });
+
+        var customPopup = "Cherry Tree<br/><img src='http://cdn.shopify.com/s/files/1/0062/8532/8445/products/Okame_Cherry_BB_600x600_e21c50af-778b-40d6-ac3b-d01a82be53eb_grande.jpg?v=1565958048'width='100px'/>";
+        
+        L.geoJSON(cherrytrees, {
+        pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {icon: TreeIcon});}})
+        .bindPopup(customPopup)
+        .addTo(map);
+    </script>
+    
+</body>
+</html>
