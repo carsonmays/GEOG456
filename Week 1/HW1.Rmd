@@ -1,0 +1,70 @@
+
+title: "GEOG456_HW1"
+author: "Carson Mays"
+date: "1/28/2021"
+output: html_notebook
+
+```{r}
+MiamiPrecip = "/Users/camays/Downloads/Spring 2021/GEOG 456/MiamiPrecip.csv"
+df <- read.csv(MiamiPrecip)
+head(df)
+```
+```{r}
+df1 = df[,c(3,4)]
+head(df1)
+```
+```{r}
+df1$Day <- as.Date(as.character(df1$DATE), "%m/%d/%Y")
+head(df1)
+```
+```{r}
+data_zero <- df1[apply(df1, 1, function(row) all(row !=0)), ]
+head(data_zero)
+```
+
+```{r}
+library(plotly)
+library(RColorBrewer)
+
+fig1 <- plot_ly(df1, x = ~Day, y = ~PRCP, type = "scatter") %>% layout(title="Miami Precipitation 2020")
+fig1
+```
+```{r}
+nrow(df1)
+tt = df1[!is.na(df1$PRCP),]
+nrow(tt)
+```
+```{r}
+myColorPalette = brewer.pal(9,"Blues")
+myColors = colorRampPalette(myColorPalette[5:9])
+```
+
+```{r}
+myScale = min(df1$PRCP)-1
+print(myScale)
+print(max(df1$PRCP))
+PRCPRange = max(df1$PRCP)-(min(df1$PRCP)-1)
+print(PRCPRange) 
+df1$PRCPColor = myColors(PRCPRange)[df1$PRCP-myScale]
+```
+
+```{r}
+fig1 <- plot_ly(df1, x = ~Day, y = ~PRCP, main = "Miami Precipitation 2020",type = "scatter", marker = list(color=df1$PRCPColor))  %>% layout(title="Miami Precipitation 2020")
+fig1
+```
+```{r}
+fig2 <- plot_ly(df1, x = ~Day, y = ~PRCP, main = "Miami Precipitation 2020",type = "bar", marker = list(color=df1$PRCPColor))  %>% layout(title="Miami Precipitation 2020")
+fig2
+```
+```{r}
+library(ggridges)
+df1$Month <- format(df1$Day,"%m")
+head(df1)
+```
+
+```{r}
+ggplot(df1, aes(x = PRCP, y = Month, fill = ..x..)) +
+  geom_density_ridges_gradient(scale = 3, rel_min_height = 0.01) +
+  labs(title = 'Monthly Precipitation in Miami') +
+  scale_fill_gradientn(colors = colorRampPalette(brewer.pal(9,"Blues")[5:9])(PRCPRange))
+```
