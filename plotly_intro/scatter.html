@@ -6,25 +6,141 @@
     <title>Scatter</title>
     <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 </head>
+
+<style>
+    body {background-color: rgb(162, 206, 221) ;}
+
+    #RedBox {position: absolute;
+        top:25%;
+        width: 100%;
+        height: 50%;
+        background-color: rgb(210, 145, 229);
+    }
+
+    .BlueBox {
+        position: absolute;
+        top:25%;
+        left: 25%;
+        width: 50%;
+        height: 50%;
+        background-color: rgb(177, 216, 132)
+
+    }
+
+    h1 {
+        cursor: cell;
+        position: relative;
+        text-align: center;
+        top: 25%
+    }
+</style>
+
+
 <body>
 
+    <div id="RedBox">
+        <div class= "BlueBox">
+            <h1 onclick="TheAlert()" >Click Here!</h1>
+        </div>
+    </div>
+
     <div id= "myDiv"></div>
+
+    <button onclick="alert('hello')">Click Alert</button>
+    <button onclick="console.log('I was clicked')">Click Console Log</button>
+    <button onclick="myFunction()">My Function</button>
+    <button onclick="myFunction2()">Change Type</button>
+
+    <label for="mySelect">Select a Month</label>
+    <select id="mySelect" onchange="myQue(this.value)">
+        <option value = [01:12]>All Months</option>
+        <option value = "01">January</option>
+        <option value = "02">February</option>
+        <option value = "03">March</option>
+        <option value = "04">April</option>
+        <option value = "05">May</option>
+        <option value = "06">June</option>
+        <option value = "07">July</option>
+        <option value = "08">August</option>
+        <option value = "09">September</option>
+        <option value = "10">October</option>
+        <option value = "11">November</option>
+        <option value = "12">December</option>
+    </select>
+
     <script src= "./data/rainfall.json"></script>
     <script>
         var trace1 = {
-  x: Miami.Day,
-  y: Miami.PRCP,
-  mode: 'markers',
-  type: 'scatter',
-  marker: {
-      color: Miami.PRCPColor
-  }
-};
+        x: Miami.Day,
+        y: Miami.PRCP,
+        mode: 'markers',
+        type: 'scatter',
+        marker: {
+            color: Miami.PRCPColor
+        }
+        };
+        var data = [trace1];
 
-var data = [trace1];
+        var layout = {
+        xaxis: {
+            title: 'Date',
+            titlefont: {
+                family: 'Tahoma, sans-serif',
+                size: 18,
+                color: 'black'
+            },
+        },
+        yaxis: {
+            title: 'Rainfall (in Inches)',
+            titlefont: {
+                family: 'Tahoma, sans-serif',
+                size: 18,
+                color: 'black'
+            },
+        },
+    };
+        Plotly.newPlot('myDiv', data);
+        
+        myQue = function(aMonth){
+           trace1.x = [];
+           trace1.y = [];
+           trace1.marker.color = [];
+           for (i=0; i<Miami.Month.length; i++){
+               if (Miami.Month[i] == aMonth) {
+                   trace1.x.push(Miami.Day[i])
+                   trace1.y.push(Miami.PRCP[i])
+                   trace1.marker.color.push(Miami.PRCPColor[i])
+               }
+            } 
+           makePlot()
+        }
+        makePlot= function() {
+            data = [trace1];
+            Plotly.newPlot('myDiv', data);
+        }
 
-Plotly.newPlot('myDiv', data);
-    </script>
+        var n = 1;
+        myFunction = function() {
+            console.log("clicked " + n + " times")
+            n = n + 1
+        }
+
+        myFunction2 = function() {
+            console.log(data[0].type + " to ")
+            if (data[0].type == "scatter") {data[0].type = 'bar'}
+            else (data[0].type = 'scatter')
+            Plotly.newPlot('myDiv', data);
+            console.log(data[0].type)
+        }
+
+        myQue("01")
+        
+        function TheAlert() {
+        var TheTime = Date();
+        alert("Today is: " + TheTime);
+    }
+
+   </script>
     
 </body>
 </html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+</head>
+<body>
+
+    <div id= "myDiv"></div>
+    <input type="range" min= "0" max= "7.4" value = "1" class= "slider" oninput= "mySlice(this.value)">
+
+
+    <script src = "./data/rainfall.json"></script>
+    <script>
+       var trace1 = {
+        x: Miami.Day,
+        y: Miami.PRCP,
+        mode: 'markers',
+        type: 'scatter',
+        marker: {
+            color: Miami.PRCPColor
+        }
+        };
+
+        var layout = {
+            xaxis: {
+                fixedrange: true,
+                range: ["2019-12-31", "2020-12-31"]
+            },
+            yaxis: {
+                fixedrange: true,
+                range: [0, 7.4]
+            }
+        }
+
+        mySlice= function(TheValue) {
+            trace1.x = Miami.Day.slice(0,TheValue)
+            trace1.y = Miami.PRCP.slice(0,TheValue)
+            trace1.marker.color = Miami.PRCPColor.slice(0,TheValue)
+            makePlot()
+        }
+
+        makePlot= function () {
+            data = [trace1];
+            Plotly.newPlot('myDiv', data);
+        }
+
+   </script>
+    
+</body>
+</html>
