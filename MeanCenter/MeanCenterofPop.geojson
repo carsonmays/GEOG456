@@ -1,0 +1,30 @@
+var pts = {
+"type": "FeatureCollection",
+"name": "MeanCenterofPop",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4269" } },
+"features": [
+{ "type": "Feature", "properties": { "Year": "1790", "Latitude": 39.3, "Longitude": -76.2 }, "geometry": { "type": "Point", "coordinates": [ -76.2, 39.3 ] } },
+{ "type": "Feature", "properties": { "Year": "1800", "Latitude": 39.3, "Longitude": -76.9 }, "geometry": { "type": "Point", "coordinates": [ -76.9, 39.3 ] } },
+{ "type": "Feature", "properties": { "Year": "1810", "Latitude": 39.2, "Longitude": -77.6 }, "geometry": { "type": "Point", "coordinates": [ -77.6, 39.2 ] } },
+{ "type": "Feature", "properties": { "Year": "1820", "Latitude": 39.1, "Longitude": -78.6 }, "geometry": { "type": "Point", "coordinates": [ -78.6, 39.1 ] } },
+{ "type": "Feature", "properties": { "Year": "1830", "Latitude": 39.0, "Longitude": -79.3 }, "geometry": { "type": "Point", "coordinates": [ -79.3, 39.0 ] } },
+{ "type": "Feature", "properties": { "Year": "1840", "Latitude": 39.0, "Longitude": -80.3 }, "geometry": { "type": "Point", "coordinates": [ -80.3, 39.0 ] } },
+{ "type": "Feature", "properties": { "Year": "1850", "Latitude": 39.0, "Longitude": -81.3 }, "geometry": { "type": "Point", "coordinates": [ -81.3, 39.0 ] } },
+{ "type": "Feature", "properties": { "Year": "1860", "Latitude": 39.0, "Longitude": -82.8 }, "geometry": { "type": "Point", "coordinates": [ -82.8, 39.0 ] } },
+{ "type": "Feature", "properties": { "Year": "1870", "Latitude": 39.2, "Longitude": -83.6 }, "geometry": { "type": "Point", "coordinates": [ -83.6, 39.2 ] } },
+{ "type": "Feature", "properties": { "Year": "1880", "Latitude": 39.1, "Longitude": -84.7 }, "geometry": { "type": "Point", "coordinates": [ -84.7, 39.1 ] } },
+{ "type": "Feature", "properties": { "Year": "1890", "Latitude": 39.2, "Longitude": -85.5 }, "geometry": { "type": "Point", "coordinates": [ -85.5, 39.2 ] } },
+{ "type": "Feature", "properties": { "Year": "1900", "Latitude": 39.2, "Longitude": -85.8 }, "geometry": { "type": "Point", "coordinates": [ -85.8, 39.2 ] } },
+{ "type": "Feature", "properties": { "Year": "1910", "Latitude": 39.2, "Longitude": -86.5 }, "geometry": { "type": "Point", "coordinates": [ -86.5, 39.2 ] } },
+{ "type": "Feature", "properties": { "Year": "1920", "Latitude": 39.2, "Longitude": -86.7 }, "geometry": { "type": "Point", "coordinates": [ -86.7, 39.2 ] } },
+{ "type": "Feature", "properties": { "Year": "1930", "Latitude": 39.1, "Longitude": -87.1 }, "geometry": { "type": "Point", "coordinates": [ -87.1, 39.1 ] } },
+{ "type": "Feature", "properties": { "Year": "1940", "Latitude": 38.9, "Longitude": -87.4 }, "geometry": { "type": "Point", "coordinates": [ -87.4, 38.9 ] } },
+{ "type": "Feature", "properties": { "Year": "1950", "Latitude": 38.8, "Longitude": -88.2 }, "geometry": { "type": "Point", "coordinates": [ -88.2, 38.8 ] } },
+{ "type": "Feature", "properties": { "Year": "1960", "Latitude": 38.6, "Longitude": -89.2 }, "geometry": { "type": "Point", "coordinates": [ -89.2, 38.6 ] } },
+{ "type": "Feature", "properties": { "Year": "1970", "Latitude": 38.5, "Longitude": -89.7 }, "geometry": { "type": "Point", "coordinates": [ -89.7, 38.5 ] } },
+{ "type": "Feature", "properties": { "Year": "1980", "Latitude": 38.1, "Longitude": -90.6 }, "geometry": { "type": "Point", "coordinates": [ -90.6, 38.1 ] } },
+{ "type": "Feature", "properties": { "Year": "1990", "Latitude": 37.9, "Longitude": -91.2 }, "geometry": { "type": "Point", "coordinates": [ -91.2, 37.9 ] } },
+{ "type": "Feature", "properties": { "Year": "2000", "Latitude": 37.7, "Longitude": -91.8 }, "geometry": { "type": "Point", "coordinates": [ -91.8, 37.7 ] } },
+{ "type": "Feature", "properties": { "Year": "2010", "Latitude": 37.5, "Longitude": -92.2 }, "geometry": { "type": "Point", "coordinates": [ -92.2, 37.5 ] } }
+]
+}
