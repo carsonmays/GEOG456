@@ -1,0 +1,121 @@
+<html>
+    <style>
+
+    #allParts {position:relative; top:5%}
+
+    #myTitle {position: relative; left: 38%; top:10%; height: 40px; font-size: 30; font-family:Arial, Helvetica, sans-serif}
+
+    #daYear {position: relative; left: 47%; height: 40px; font-size: 20; font-family:Arial, Helvetica, sans-serif}
+
+    .slider {
+    -webkit-appearance: none;
+    width: 70%;
+    position: relative;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    left: 15%;
+    height: 25px;
+    background: #335334;
+    cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+    width: 25px;
+    left: 15%;
+    height: 25px;
+    background: #345235;
+    cursor: pointer;
+    }
+
+    #myRange {left:15%}
+
+   
+
+
+</style>
+
+    <head>
+        <title>My First Leaflet Map</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+        <script src="geojson/MeanCenterofPop.geojson" ></script>
+
+    </head>
+    <body>
+    <style>
+    </style>
+    <div id= "allParts">
+        <div id="myTitle">Mean Center of Population</div>
+        <div id="daYear"> Year: <span id="demo"></span></div>
+        <div class="slidecontainer">
+            <input type="range" min="1" max="23" value="1" class="slider" id="myRange">
+        </div>
+        <div id="mapid"></div>
+    </div>
+
+    <script>
+        var slider = document.getElementById('myRange');
+        var output = document.getElementById("demo");
+        output.innerHTML = pts.features[0].properties.Year;
+        // var output = document.getElementById('demo').innerHTML = 'Year: ' + value;
+    </script>
+
+            
+
+    
+    
+    <style>
+        body {background-color: rgb(154, 192, 137) ;}
+
+        #mapid{ width: 1000px; height: 500px; left:15%; top: 2%}
+    </style>
+
+    <script>  
+    
+    var map = L.map('mapid').setView([39.1031, -84.5120], 6); 
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+    var uncIcon = L.icon({ 
+        iconUrl: '/Users/camays/Downloads/Spring 2021/GEOG 456/Week 5/star.png',   
+        iconSize: [35,35], 
+        popupAnchor: [0,0] 
+        });
+
+    var PopPoint = L.geoJSON(pts.features[0], { 
+        pointToLayer: function (feature, latlng) { 
+        return L.marker(latlng, {icon: uncIcon});}
+        }).addTo(map);
+    map.addLayer(PopPoint) 
+
+    slider.oninput = function() {
+          output.innerHTML = pts.features[(this.value-1)].properties.Year;
+          PopPoint.remove(); 
+        PopPoint = L.geoJSON(pts.features.slice(0,this.value),
+        {
+        pointToLayer: function (feature, latlng) { 
+        return L.marker(latlng, {icon: uncIcon});} 
+        })
+        map.addLayer(PopPoint); 
+        }
+    </script>
+    </body> 
+    </html>
+
+
